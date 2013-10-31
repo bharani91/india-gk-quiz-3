@@ -2,23 +2,37 @@
 
 /* Controllers */
 
-angular.module('Quiz.controllers')
-.controller('AppController', ["$scope", "Quiz", "$route", "$location", "$window", function($scope, Quiz, $route, $location, $window) {
+angular.module('App.controllers')
+.controller('AppController', ["$scope", "$navigate", "$location", "$window", function($scope, $navigate, $location, $window) {
+    $scope.title = "India GK Quiz";
+    $scope.$navigate = $navigate;
 
-    $scope.initialize = function() {
-        $scope.gk = Quiz.load();
+    $scope.rand = Math.floor(Math.random() * 1000);
+
+
+    // Rating Overlay
+    $scope.practice_questions_attempted = 0;
+    $scope.show_notification = true;
+
+    $scope.slidePage = function (path, type) {
+        $navigate.go(path,type);
+        $scope.showSideMenu = false; // Close side menu if open
+    };
+
+
+    $scope.back = function () {
+        $navigate.back();
+    };
+
+    $scope.rate = function() {
+        $window.open('market://details?id=com.abhayam.indiagkquiz');
+        $scope.show_notification = false;
     }
 
-    $scope.is_root = function() {
-        return $location.path() == "/";
+    $scope.isActive = function(path) {
+        var path_regex = new RegExp(path.substr(1));
+        return path_regex.test($location.path());
     }
 
-    $scope.back = function() {
-        $window.history.back();
-    }
-
-    $scope.$on("$routeChangeSuccess", function (scope, next, current) {
-        $scope.transitionState = "active"
-    });
 
 }])

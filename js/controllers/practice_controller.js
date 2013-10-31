@@ -2,16 +2,44 @@
 
 /* Controllers */
 
-angular.module('Quiz.controllers')
-.controller('PracticeController', ["$scope", "Quiz", "$routeParams", "$location", function($scope, Quiz, $routeParams, $location) {
+angular.module('App.controllers')
+.controller('PracticeController', ["$scope", "Quiz", "$routeParams", "$location", "Navigation", function($scope, Quiz, $routeParams, $location, Navigation) {
+
 
     var init = function() {
+        $scope.$parent.practice_questions_attempted++;
         $scope.show_answer = false;
-        $scope.gk.success(function(data) {
-            $scope.question = Quiz.getOne(data, $routeParams.id);
-            $scope.next_question_id = Math.round(Math.random() * data.length);
-        });
+        $scope.question = Quiz.getOne($routeParams.id);
+        $scope.next_question_id = Math.round(Math.random() * 1000);
+
+        $scope.subtitle = "Practice Mode"
+
+
+        // Rating Overlay
+        if($scope.$parent.show_notification && $scope.$parent.practice_questions_attempted % 20 == 0) {
+            $scope.show_rating_overlay = true;
+        }
     } 
+
+    // Rating Overlay
+    $scope.show_rating_overlay = false;
+
+    $scope.close_overlay = function() {
+        $scope.show_rating_overlay = false;
+    }
+
+    $scope.rate = function() {
+        $scope.show_rating_overlay = false;
+        $scope.$parent.rate();
+    }
+
+    $scope.disable_notification = function() {
+        $scope.$parent.show_notification = false;
+        $scope.show_rating_overlay = false;
+    }
+
+
+
 
     $scope.has_attempted = function(question) {
         return !!question.attempted;
@@ -26,7 +54,12 @@ angular.module('Quiz.controllers')
     }
 
     $scope.skip = function() {
-        $location.path("/practice/" + $scope.next_question_id);
+        Navigation.slidePage("/practice/" + $scope.next_question_id);
+    }
+
+    $scope.back = function() {
+        Navigation.back();
+        // Navigation.slidePage("/practice/" + $scope.next_question_id);
     }
 
     $scope.select = function(answer) {

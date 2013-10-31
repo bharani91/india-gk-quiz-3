@@ -1,0 +1,165 @@
+.question-view {
+
+    ul.list.inset {
+        margin-bottom: 20px;
+    }
+    .list-divider.question {
+        text-transform: none;
+        font-size: 1.5em;
+        color: #fff;
+        line-height: 1.3
+    }
+
+    li.option {
+        padding: 0;
+        label.input-radio-wrapper {
+            padding: 5px;
+            color: #ccc;
+            display: block;
+            width: 100%;
+            height: auto;
+
+            .input-radio-inner {
+                // display: inline;
+                float: left;
+                position: relative;
+                top: 10px;
+                margin-right: 10px;
+                border-color: #A09E9E;
+
+            }
+
+
+            &.active {
+                outline: 0;
+                background: #1f5366;
+                // -webkit-box-shadow: inset 0 0 1px 2pt #037ea7,0 2px 3px rgba(0,0,0,.5);
+                // -moz-box-shadow: inset 0 0 1px 2pt #037ea7,0 2px 3px rgba(0,0,0,.5);
+                // box-shadow: inset 0 0 1px 2pt #037ea7,0 2px 3px rgba(0,0,0,.5);
+            }
+
+
+            &.strike {
+                visibility: hidden;
+            }
+        }
+
+        &.incorrect label.input-radio-wrapper {
+            background: $pomegranate;
+            position: relative;
+            &:after {
+                content: "\e020";
+                font-family: icomoon;
+                font-style: normal;
+                font-weight: normal;
+                speak: none;
+
+                position: absolute;
+                right: 15px;
+                top: 10px;
+                background: #000;
+                width: 24px;
+                height: 30px;
+                line-height: 30px;
+                padding-left: 9px;
+                font-weight: 700;
+                font-size: 20px;
+                @include border-radius(30px);
+
+
+            }
+        }
+
+        &.correct label.input-radio-wrapper {
+            background: $green-sea;
+            position: relative;
+            &:after {
+                content:  "\e022";
+                font-family: icomoon;
+                font-style: normal;
+                font-weight: normal;
+                speak: none;
+
+                position: absolute;
+                right: 15px;
+                top: 10px;
+                background: #000;
+                width: 24px;
+                height: 30px;
+                line-height: 30px;
+                padding-left: 9px;
+                font-weight: 700;
+                font-size: 20px;
+
+                @include border-radius(30px);
+
+
+            }
+        }
+    }
+}
+
+
+
+#rating-overlay, .rating-dialog-wrapper {
+    opacity: 1;
+    display: block;
+    visibility: visible;
+}
+
+#rating-overlay {
+    width: 100%;
+    .dialog-content {
+        padding: 15px;
+        left: 30%;
+        @include box-sizing(border-box);
+
+        h3 {
+            font-size: 1.5em;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            font-size: 20px;
+            padding: 15px;
+
+            &.cta {
+                margin-bottom: 20px;
+                padding: 25px;
+            }
+        }
+
+        .disable-notifications {
+            display: block;
+            padding: 15px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+    }
+}
+
+
+
+.test-view {
+    margin-top: 0;
+    .answer {
+        margin-bottom: 20px;
+    }
+    .test-list {
+        list-style: none;
+        li  {
+            .count {
+                font-weight: 300;
+                color: #ccc;
+            }
+
+            &.list-divider.question {
+                font-size: 1.3em;
+                line-height: 1.2em;
+            }
+        }
+
+    }
+}

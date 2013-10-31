@@ -2,26 +2,32 @@
 
 /* Controllers */
 
-angular.module('Quiz.controllers')
-.controller('TestController', ["$scope", "Quiz", "$window", function($scope, Quiz, $window) {
+angular.module('App.controllers')
+.controller('TestController', ["$scope", "Quiz", "$document", function($scope, Quiz, $document) {
 
     $scope.size = 25; // number of questions
     $scope.countdown = 10*60; // 10 mins
 
+    $scope.subtitle = "Test Mode";
+    
+
+
     var init = function() {
+        
+        // Restart timer
         $scope.$broadcast('timer-start');
+
         $scope.timer_stopped = false;
         $scope.viewing_results = false;
+
 
         $scope.$on('timer-stopped', function (event, data){
             $scope.timer_stopped = true;
             $scope.$apply();
         });
 
+        $scope.test = Quiz.getCollection($scope.size);
 
-        $scope.gk.success(function(data) {
-            $scope.test = Quiz.getCollection(data, $scope.size);
-        });
     } 
 
     $scope.correct_answers = function(questions) {
@@ -50,26 +56,26 @@ angular.module('Quiz.controllers')
 
     $scope.reload = function() {
         init();
-        $window.scrollTo(0,0);
+        $document.find(".content")[0].scrollTop = 0;
     }
 
     $scope.show_results = function(questions) {
 
         for(var i = 0; i < questions.length; i++) {
-            if(questions[i].selected == questions[i].answer) {
+            if(questions[i] && (questions[i].selected == questions[i].answer)) {
                 questions[i].answered_correctly = true;
             }
         }
 
         $scope.viewing_results = true;
-        $window.scrollTo(0,0);
+        $document.find(".content")[0].scrollTop = 0;
     }
 
 
     $scope.remaining_questions = function(test) {
         var answered = [];
         for(var i = 0; i< test.length; i++) {
-            if(test[i].selected) {
+            if(test[i] && test[i].selected) {
                 answered.push(test[i])
             }
         }

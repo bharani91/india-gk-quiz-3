@@ -1,54 +1,89 @@
-<div id="test" class="page {{transitionState}}"  ng-controller="TestController">
-
-    <div class="row statistics" ng-show="viewing_results">
-        <div class="alert secondary">
-            <h1><i class="icon-list-numbered"></i> Your score: {{ correct_answers(test) }}/{{ size }}</h1>
-            <br>
-            <button ng-click="reload()" class="button button-main button-block">Take another test <i class="icon-right-open"></i></button>
-        </div>
-    </div>
-    
-
-    <div class="row timer-wrapper" ng-hide="viewing_results">
+<nav class="action-bar fixed-bottom timer-bar">
+    <div class="clear" ng-hide="viewing_results">
         <div class="span10">
-            <h3 ng-hide="timer_stopped" class="alert warning"><timer interval="1000" countdown="countdown"><i class="icon-clock"></i> {{minutes}} mins : {{seconds}} secs remaining</timer></h3>
+            <h3 ng-hide="timer_stopped" class="alert warning"><timer interval="1000" countdown="countdown"><i class="icon-clock"></i> {{minutes}} mins : {{seconds}} secs</timer></h3>
             <h3 ng-show="timer_stopped" class="alert danger">Time's Up!</h3>            
         </div>
         <div class="span2">
-            <button ng-click="reload()" class="button button-main"><i class="icon-arrows-cw"></i> Retake</button>
+            <button ng-click="reload()" class="btn-small"><i class="icon-refresh"></i> Retake</button>
+        </div>
+    </div>
+
+
+    <div class="clear" ng-show="viewing_results">
+        <div class="span10">
+            <h3 class="alert secondary"><i class="icon-settings"></i> Your score: {{ correct_answers(test) }}/{{ size }}</h3>            
+        </div>
+        <div class="span2">
+            <button ng-click="reload()" class="btn-small"><i class="icon-refresh"></i> Retake</button>
+        </div>
+    </div>
+    
+</nav>
+
+
+<ng-include src="'partials/header.html'"></ng-include>
+
+<div id="practice" class="page content question-view test-view">
+    <div class="row statistics panel" ng-show="viewing_results">
+        <div class="alert">
+            <h2 class="centered"><i class="icon-settings"></i> Your score: {{ correct_answers(test) }}/{{ size }}</h2>
+            
+            <br>
+
+            <div class="share">
+                <h3 class="centered">
+                    Share your score:
+                </h3>
+
+                <button class="btn btn-block share-button facebook" share="facebook">Share on Facebook</button>
+                <button class="btn btn-block share-button twitter" share="twitter">Tweet about this app</button>
+                <button class="btn btn-block share-button gplus" share="gplus">Share on Google+</button>
+            </div>
+
+            <br>
+
+            <div class="rate">
+                <p>If you link using India GK Quiz, would you mind taking a moment to rate or review it?</p>
+                <a href="" class="btn btn-block " ng-click="$parent.rate()"><i class="icon-star-full"></i> Rate or review this app</a>
+            </div>
+
+            <br><br>
+
+            <button ng-click="reload()" class="btn btn-block cta">Take another test <i class="icon-chevron-right"></i></button>
         </div>
     </div>
 
     <ul class="test-list">
         <li ng-repeat="question in test">
-            <div class="row">
-                <h2 class="span12 question">
-                    <span class="count">{{ $index+1 }}.</span> {{ question.question }}
-                    
-                    <br>
-
-                    <button ng-click="hide_two_options(question)" ng-disabled="question.hide_help_button||viewing_results" class="button button-50 pull-right"><i class="icon-scissors"></i> 50-50</button>
-
-                </h2>
-
-            </div>
             <form>
-                <ul class="list inset options-list">
-                    <li ng-repeat="answer in question.options" 
-                        ng-class="{ 
+                <ul class="list inset">
+                    <li class="list-divider question"><span class="count">{{ $index+1 }}.</span> {{ question.question }}</li>
+                    <li class="option" 
+                            ng-repeat="answer in question.options"
+                            ng-class= "{ 
                             correct: correct_answer(question, $index),
                             incorrect: incorrect_answer(question, $index)
-                        }">     
-                            
-                        <label ng-click="select(answer)" ng-class="{ 
-                            strike: question.strike_array.indexOf($index) >= 0,
-                            active: selected == answer
-                        }">                       
-                            <input type="radio" value="{{$index}}" name="question[]" ng-model="question.selected" ng-disabled="has_attempted(question)"/>
+                        }">
+
+                        <label 
+                            class="input-radio-wrapper" 
+                            ng-click="select(answer)" 
+                            ng-class="{ 
+                                strike: question.strike_array.indexOf($index) >= 0,
+                                active: selected == answer
+                            }">
+
+                            <input type="radio" value="{{$index}}" name="question[]" ng-model="question.selected" ng-disabled="has_attempted(question)" class="input-radio">
+                            <div class="input-radio-inner">
+                                <div class="input-radio-button"></div>
+                            </div>
                             {{ answer }}
                         </label>
                     </li>
                 </ul>
+
+
 
                 <div class="answer" ng-show="viewing_results">
                     <div ng-show="question.answered_correctly" class="alert success">
@@ -66,21 +101,17 @@
 
                     </div>
                 </div>
-
-
             </form>
         </li>
 
 
         <div ng-hide="viewing_results">
-            <button ng-click="show_results(test)" ng-disabled="remaining_questions(test)" class="button-main button-block">Submit and check your score <i class="icon-right-open"></i></button>
+            <button ng-click="show_results(test)" ng-disabled="remaining_questions(test)" class="btn btn-block cta">Submit and check your score <i class="icon-chevron-right"></i></button>
         </div>
 
         <div ng-show="viewing_results">
-            <button ng-click="reload()" class="button button-main button-block">Take another test <i class="icon-right-open"></i></button>
+            <button ng-click="reload()" class="btn btn-block cta">Take another test <i class="icon-chevron-right"></i></button>
         </div>
-
-
     </ul>
-    
-</div>
+
+</div><!--content -->

@@ -1,0 +1,53 @@
+
+<ng-include src="'partials/header.html'"></ng-include>
+
+<div class="content home-view">
+    <ul class="list inset choose-quiz">
+        <li class="list-divider">India GK Quiz Questions</li>
+        <li class="list-item-two-lines">
+            <a href="" ng-click="slidePage('/practice/{{rand}}')">
+                <h3>Practice Mode</h3>
+                <p>No time limit - Sharpen your GK Skills.</p>
+                <i class="icon-chevron-right right-arrow"></i>
+            </a>
+        </li>
+        <li class="list-item-two-lines">
+            <a href="" ng-click="slidePage('/test')">
+                <h3>Test Mode</h3>
+                <p>Answer 25 questions in 10 minutes.</p>
+                <i class="icon-chevron-right right-arrow"></i>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="list inset recommended-books">
+        <li class="list-divider">Additional Resources</li>
+        <li class="list-item-two-lines">
+            <a href="" ng-click="slidePage('/recommended-books')">
+                <h3>Recommended Books</h3>
+                <p>Best GK and General Awareness books recommended by experts</p>
+                <i class="icon-chevron-right right-arrow"></i>
+            </a>
+        </li>
+    </ul>
+
+
+    <ul class="list inset recommended-books">
+        <li class="list-divider">Rate and Review</li>
+        <li class="list-item-two-lines">
+            <a href="" ng-click="slidePage('/share')">
+                <h3>Share this app with your friends</h3>
+                <p>Help us spread the word. Please share it with your friends.</p>
+                <i class="icon-chevron-right right-arrow"></i>
+            </a>
+        </li>
+        <li class="list-item-two-lines">
+            <a href="" ng-click="$parent.rate()">
+                <h3>Like this app? Rate or review it</h3>
+                <p>Would you mind taking a moment to rate or review it? It only takes a minute</p>
+                <i class="icon-chevron-right right-arrow"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+

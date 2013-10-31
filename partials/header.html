@@ -1,0 +1,22 @@
+<header class="action-bar fixed-top">
+    <a href="" class="app-icon action" ng-click="slidePage('/')" ng-disabled="isActive('/')">
+        <i class="icon-map logo"></i>
+    </a>
+
+    <h2 class="title">India GK Quiz <span class="subtitle">{{ subtitle || "Updated for 2013-2014" }}</span></h2>
+
+    <ul class="actions pull-right">
+    <li><a href="" class="action" title="Info" ng-click="slidePage('/info')"><i class="icon-information"></i></a></li>
+        <li class="action-overflow-docs">
+            <a class="action action-overflow-icon toggle-spinner"><i></i></a>
+            <ol reversed="reversed" class="action-overflow-list spinner">
+                <li class="spinner-item"><a href="" ng-hide="isActive('/practice')" ng-click="slidePage('/practice/{{rand}}')"><i class="icon-map"></i> GK Questions</a></li>
+                <li class="spinner-item" ng-hide="isActive('/test')"><a href=""  ng-click="slidePage('/test')"><i class="icon-alarm"></i> Take a test</a></li>
+                <li class="spinner-item"><a href="" ng-hide="isActive('/recommended-books')" ng-click="slidePage('/recommended-books')"><i class="icon-view-as-list"></i> Recommended Books</a></li>
+                <li class="spinner-item"><a href="" ng-click="$parent.rate()"><i class="icon-star-full"></i> Rate this app</a></li>
+                <li class="spinner-item"><a href="" ng-hide="isActive('/share')" ng-click="slidePage('/share')"><i class="icon-share"></i> Share this app</a></li>
+            </ol>
+        </li>
+    </ul>
+</header>
+

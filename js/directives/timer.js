@@ -3,7 +3,7 @@
 /* Directives */
 
 
-angular.module('Quiz.directives')
+angular.module('App.directives')
 .directive('timer', ['$compile', function ($compile) {
     return  {
         restrict: 'E',
