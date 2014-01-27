@@ -102,6 +102,13 @@ angular.module('App.controllers')
     }
 
 
+    $scope.show_ad = function(index) {
+        if((index+1) % 6 == 0) {
+            return true;
+        }
+    }
+
+
     init();
 
 }])

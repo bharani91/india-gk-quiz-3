@@ -3,6 +3,11 @@
     ul.list.inset {
         margin-bottom: 20px;
     }
+
+    .list.inset.choose-quiz  {
+        padding: 10px;
+        background: lighten(#111, 10%);
+    }
     .list-divider.question {
         text-transform: none;
         font-size: 1.5em;

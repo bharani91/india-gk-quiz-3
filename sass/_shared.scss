@@ -5,6 +5,20 @@ html, body {
 .content {
     background: #111;
 }
+
+// Adsense
+.india-gk-quiz-responsive { width: 320px; height: 50px; }
+@media(min-width: 500px) { .india-gk-quiz-responsive { width: 468px; height: 60px; } }
+@media(min-width: 800px) { .india-gk-quiz-responsive { width: 728px; height: 90px; } }
+
+.adsense-responsive, .ad-centered {
+    text-align: center;
+}
+
+.thin-banner-ad {
+    margin-top: 30px;
+}
+
 .action-bar {
     h2.title {
         max-width: 150px;
@@ -256,4 +270,12 @@ html, body {
         display: block;
         text-align: center;
     }
+}
+
+#adsense-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
 }

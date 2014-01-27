@@ -4,6 +4,24 @@ html, body {
 .content {
   background: #111; }
 
+.india-gk-quiz-responsive {
+  width: 320px;
+  height: 50px; }
+
+@media (min-width: 500px) {
+  .india-gk-quiz-responsive {
+    width: 468px;
+    height: 60px; } }
+@media (min-width: 800px) {
+  .india-gk-quiz-responsive {
+    width: 728px;
+    height: 90px; } }
+.adsense-responsive, .ad-centered {
+  text-align: center; }
+
+.thin-banner-ad {
+  margin-top: 30px; }
+
 .action-bar h2.title {
   max-width: 150px;
   overflow-x: hidden;
@@ -195,8 +213,18 @@ html, body {
   display: block;
   text-align: center; }
 
+#adsense-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%; }
+
 .question-view ul.list.inset {
   margin-bottom: 20px; }
+.question-view .list.inset.choose-quiz {
+  padding: 10px;
+  background: #2b2b2b; }
 .question-view .list-divider.question {
   text-transform: none;
   font-size: 1.5em;
